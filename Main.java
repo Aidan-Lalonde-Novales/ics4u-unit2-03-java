@@ -59,14 +59,6 @@ final class Main {
     }
 }
 
-/*
-* This is the standard Main() class starting point.
-*
-* @author  Daria Bernice Calitis
-* @version 11.0.16
-* @since   2022-10-03
-*/
-
 // Imports
 import java.util.Scanner;
 

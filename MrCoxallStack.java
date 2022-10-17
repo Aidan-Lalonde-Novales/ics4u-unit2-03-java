@@ -45,14 +45,6 @@ public class MrCoxallStack {
     }
 }
 
-/*
-* MrCoxallStack Class
-*
-* @author  Daria Bernice Calitis
-* @version 11.0.16
-* @since   2022-10-03
-*/
-
 import java.util.ArrayList;
 
 /**
