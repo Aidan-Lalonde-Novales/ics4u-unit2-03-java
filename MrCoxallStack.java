@@ -1,9 +1,9 @@
 /*
-* This file pushes to and prints a stack.
+* This file pushes to, peeks and prints a stack.
 *
 * @author  Aidan Lalonde-Novales
 * @version 1.0
-* @since   2020-10-10
+* @since   2022-10-20
 */
 
 import java.util.ArrayList;
@@ -18,112 +18,51 @@ public class MrCoxallStack {
     private ArrayList<Float> stack = new ArrayList<Float>();
 
     /**
-     * This function is the getter.
+     * This method is the getter, showing items to the user.
      *
      * @return stack - array being added to.
      */
     public ArrayList<Float> getStack() {
-        return this.stack;
-    }
-
-    /**
-     * This function adds a number to the stack.
-     *
-     * @param tempNum - number to be pushed to the stack.
-     */
-    public void push(float tempNum) {
-        stack.add(tempNum);
-    }
-
-    /**
-     * This function pops the most recent value from the stack.
-     *
-     * @return this.stack - returns a popped version of the stack.
-     */
-    public float popStack() {
-        return this.stack.remove(stack.size() - 1);
-    }
-}
-
-import java.util.ArrayList;
-
-/**
- * MrCoxallStack Class.
- */
-public class MrCoxallStack {
-    /**
-     * Array stack.
-     */
-    private ArrayList<Number> stack = new ArrayList<Number>();
-
-    /**
-     * The getStack() function.
-     *
-     * <p>
-     * Shows the items of the stack.
-     * </p>
-     *
-     * @return stack - the array list of numbers.
-     */
-    public ArrayList<Number> getStack() {
         return stack;
     }
 
     /**
-     * The pushItem() function.
+     * This method adds a number to the stack.
      *
-     * <p>
-     * It adds a number to the stack ArrayList.
-     * </p>
-     *
-     * @param pushedNumber - the number to be added to the stack.
+     * @param tempNum - number to be pushed to the stack.
      */
-    public void pushItem(int pushedNumber) {
-        stack.add(pushedNumber);
+    public void pushStack(float tempNum) {
+        stack.add(tempNum);
     }
 
     /**
-     * The popItem() function.
+     * This method pops the most recent value from the stack.
      *
-     * <p>
-     * It removes and returns the last number from the stack ArrayList.
-     * </p>
-     *
-     * @return item - the last number in the stack.
+     * @return popOutput - the popped output from the stack.
      */
-    public int popItem() {
-        final int size = stack.size();
-        final int item;
+    public float popStack() {
+        final float popOutput;
         if (stack.isEmpty()) {
-            item = -1;
-            System.out.println("No items to pop in the stack.");
+            popOutput = 0;
         } else {
-            item = (int) stack.get(size - 1);
-            stack.remove(size - 1);
+            popOutput = stack.remove(stack.size() - 1);
         }
-
-        return item;
+        return popOutput;
     }
 
     /**
-     * The peekItem() function.
+     * This method allows the user to view the
+     * most recent number in the stack.
      *
-     * <p>
-     * It returns the last number from the stack ArrayList.
-     * </p>
-     *
-     * @return item - the last number in the stack.
+     * @return peekOutput - the peek output from the stack.
      */
-    public int peekItem() {
-        final int size = stack.size();
-        final int item;
+    public float peekStack() {
+        final float peekOutput;
         if (stack.isEmpty()) {
-            item = -1;
-            System.out.println("No items to peek in the stack.");
+            peekOutput = 0;
         } else {
-            item = (int) stack.get(size - 1);
+            peekOutput = stack.get(stack.size() - 1);
         }
-
-        return item;
+        return peekOutput;
     }
 }

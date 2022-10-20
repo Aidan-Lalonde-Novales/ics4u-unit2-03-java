@@ -1,16 +1,16 @@
 /*
-* This program finds the length of a board foot
-* given width and height
+* This program runs alongside Stack.ts
+* in order to add items to and view a popped stack.
 *
 * @author  Aidan Lalonde-Novales
 * @version 1.0
-* @since   2020-10-10
+* @since   2022-10-20
 */
 
 import java.util.Scanner;
 
 /**
- * This is a board foot length calculator.
+ * This is a program that runs alongside MrCoxallStack.
 */
 
 final class Main {
@@ -33,102 +33,48 @@ final class Main {
     */
     public static void main(final String[] args) {
         final MrCoxallStack myStack = new MrCoxallStack();
+        final Scanner sc = new Scanner(System.in);
+        final float pushCheck = -1;
+        final float peekCheck = -2;
+        final float popCheck = -3;
 
         while (true) {
-            final Scanner numObj = new Scanner(System.in);
-            System.out.println("Enter a number to add (-1 to pop): ");
-            try {
-                final float tempNum = numObj.nextFloat();
-                if (tempNum == -1) {
-                    break;
-                } else {
-                    myStack.push(tempNum);
+            // Input & Process
+            float tempNum = 0;
+            float tempInput = 0;
+            System.out.print("Enter -1 to push, -2 to peek, -3 to pop: ");
+            tempInput = sc.nextFloat();
+
+            if (tempInput == popCheck) {
+                break;
+            } else if (tempInput == peekCheck) {
+                try {
+                    System.out.println(myStack.peekStack());
+                } catch (java.util.InputMismatchException ex) {
+                    System.out.println("Please add a number first.");
                 }
-            } catch (java.util.InputMismatchException ex) {
-                System.out.println("\nInvalid Input. Try Again.");
+            } else if (tempInput == pushCheck) {
+                System.out.print("Enter a number to add to the stack: ");
+                try {
+                    tempNum = sc.nextFloat();
+                    myStack.pushStack(tempNum);
+                } catch (java.util.InputMismatchException ex) {
+                    System.out.println("Not a Number!");
+                }
+            } else {
+                System.out.println("Invalid Input. Please Try Again.");
             }
-            System.out.println("");
         }
+
+        // Output
         System.out.println("\nOriginal Stack:");
-        System.out.print(myStack.getStack());
-        System.out.println("\nPopped Number:");
-        System.out.print(myStack.popStack());
-
-        System.out.println("");
-        System.out.println("\nDone.");
-    }
-}
-
-// Imports
-import java.util.Scanner;
-
-/**
-*  Main class.
-*/
-final class Main {
-    /**
-     * Prevent instantiation.
-     * Throw an exception IllegalStateException.
-     * if this ever is called
-     *
-     * @throws IllegalStateException
-     *
-     */
-    private Main() {
-        throw new IllegalStateException("Cannot be instantiated");
-    }
-
-    /**
-     * The starting main() function.
-     *
-     * @param args No args will be used
-     */
-    public static void main(final String[] args) {
-        // Declaring classes.
-        final Scanner scan = new Scanner(System.in);
-        final MrCoxallStack stack = new MrCoxallStack();
-
-        boolean continueLoop = true;
-
-
-        String answer = "";
-
-        while (continueLoop) {
-            System.out.println("Enter 'q' to exit the loop.");
-            System.out.print("Enter action (pop/peek/push): ");
-            int num = 0;
-            answer = scan.nextLine();
-
-            switch (answer.toLowerCase()) {
-                case "pop":
-                    System.out.println(stack.popItem());
-                    break;
-                case "peek":
-                    System.out.println(stack.peekItem());
-                    break;
-                case "push":
-                    System.out.print("Enter a number: ");
-                    num = scan.nextInt();
-                    stack.pushItem(num);
-                    break;
-                default:
-                    break;
-            }
-
-            if ("q".equals(answer)) {
-                continueLoop = false;
-            }
-
-            if (("q".equals(answer)) &&
-                ("push".equals(answer)) &&
-                ("peek".equals(answer)) &&
-                ("pull".equals(answer))) {
-                    System.out.println("Enter a valid action.");
-            }
-
-            System.out.println();
+        try {
+            System.out.println(myStack.getStack());
+            System.out.println("\nPopped Item:");
+            System.out.println(myStack.popStack());
+        } catch (java.util.InputMismatchException ex) {
+            System.out.println("None.");
         }
-
         System.out.println("\nDone.");
     }
 }
